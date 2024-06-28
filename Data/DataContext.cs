@@ -10,6 +10,10 @@ namespace simple.Data
         public DbSet<Recipe> Recipe { get; set; }
         public DbSet<Ingredient> Ingredients {  get; set; }
         public DbSet<Preparation> Preparation { get; set; }
+        public int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
         
     }
 }

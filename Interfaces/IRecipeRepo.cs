@@ -6,6 +6,7 @@ namespace simple.Interfaces
     {
         public IEnumerable<Recipe> GetAll();
         public Recipe Get(int id);
-        public IEnumerable<Recipe> GetByRecipeName(string name, string? ingredients);
+        public void Add(Recipe recipe);
+        public IEnumerable<Recipe> GetByRecipeName(string name, string? ingredients = null);
     }
 }

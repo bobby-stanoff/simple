@@ -15,8 +15,16 @@ namespace simple.Models
         {
             string pattern = @"(\d+)(?:\/\d+)?\s*(.*)";
             Match match = Regex.Match(name, pattern);
-            Quantity = match.Groups[1].Value;
-            Name = match.Groups[2].Value;
+            if (match.Success)
+            {
+                Quantity = match.Groups[1].Value;
+                Name = match.Groups[2].Value;
+            }
+            else
+            {
+                Quantity = ""; 
+                Name = name;
+            }
         }
     }
 }

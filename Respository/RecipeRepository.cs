@@ -21,12 +21,16 @@ namespace simple.Respository
             return recipe;
         }
         public Recipe Get(int recipeid) => _db.Recipe.Include(r => r.Ingredients).Include(r => r.Preparation).FirstOrDefault(x => x.Id == recipeid);
+        public void Add(Recipe recipe){
+            _db.Recipe.Add(recipe);
+            _db.SaveChanges();
+        }
         public IEnumerable<Recipe> GetByRecipeName(string name, string? ingredients)
         {
-            IEnumerable<Recipe> res2 = _db.Recipe.Where(x => x.Id == 222);
+            IEnumerable<Recipe> res2;
             var res = _db.Recipe.Include(r => r.Ingredients).Include(r => r.Preparation).ToList();
-            if (ingredients == ""){
-                res2 = res.Where(x => x.Name.Contains(name)).ToList();
+            if (ingredients == "" || ingredients == null){
+                res2 = res.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
                 return res2;
             }
             var res1 = res.Where(y => {

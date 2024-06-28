@@ -100,3 +100,4 @@
 /home/pece/Desktop/simple/obj/Debug/net8.0/ref/simple.dll
 /home/pece/Desktop/simple/bin/Debug/net8.0/MySqlConnector.dll
 /home/pece/Desktop/simple/bin/Debug/net8.0/Pomelo.EntityFrameworkCore.MySql.dll
+/home/pece/Desktop/simple/bin/Debug/net8.0/sendPost.json

@@ -17,18 +17,24 @@ builder.Services.AddDbContext<IDataContext,DataContext>(option =>
     var connectionString = builder.Configuration.GetConnectionString("mariadbconnection");
     option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
-builder.Services.AddScoped<Seed>();
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(name: "AllowAll", builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+    });
+
 
 var app = builder.Build();
 
 var serviceScope = app.Services.CreateScope();
 var provider = serviceScope.ServiceProvider;
-var seeddb = provider.GetRequiredService<Seed>();
-seeddb.LoadJson();
 
 
-app.UseHttpsRedirection();
-
+app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
 

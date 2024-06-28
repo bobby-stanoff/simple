@@ -9,6 +9,6 @@ namespace simple.Interfaces
         public DbSet<Recipe> Recipe { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Preparation> Preparation { get; set; }
-
+        public int SaveChanges();
     }
 }
